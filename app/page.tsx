@@ -5,13 +5,15 @@ export default function Home() {
   interface task {
     id: number | null;
     title: string;
-    createdAt: Date | null;
+    createdAt: string | null;
   }
 
   const [tasks, setTasks] = useState<task[]>([]);
 
   const fetchAllTasks = async () => {
-    const res = await fetch(`/api/task`);
+    const res = await fetch(`/api/task`, {
+      method: "GET",
+    });
     const data = await res.json();
     setTasks(data.tasks);
     console.log(data.tasks);
@@ -25,9 +27,8 @@ export default function Home() {
       },
       body: JSON.stringify({ title: title }),
     });
-    const data = await res.json();
     fetchAllTasks();
-    console.log(data.task);
+    return await res.json();
   };
 
   useEffect(() => {

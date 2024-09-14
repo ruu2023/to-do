@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-// クライアントコンポーネントとして宣言
-
 export default function Home() {
   interface task {
     id: number | null;
